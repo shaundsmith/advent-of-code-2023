@@ -9,25 +9,25 @@ class Day1 : PuzzleSolution  {
 
     override fun part1(input: List<String>): String {
 
-        val sum = input.sumOf { line -> getDigits(line, true) }
+        val sum = input.sumOf { line -> getDigits(line, includeWords = false) }
 
         return sum.toString()
     }
 
     override fun part2(input: List<String>): String {
 
-        val sum = input.sumOf { line -> getDigits(line, false) }
+        val sum = input.sumOf { line -> getDigits(line, includeWords = true) }
 
         return sum.toString()
     }
 
-    private fun getDigits(line: String, ignoreWords: Boolean): Int {
+    private fun getDigits(line: String, includeWords: Boolean): Int {
 
         val allDigits = arrayListOf<String>()
         for ((index, character) in line.withIndex()) {
             if (character.isDigit()) {
                 allDigits.add(character.toString())
-            } else if (!ignoreWords && character.isLetter()) {
+            } else if (includeWords && character.isLetter()) {
                 val interpretedNumber = interpretNumberFromString(line.substring(index))
                 if (interpretedNumber?.isNotBlank() == true) {
                     allDigits.add(interpretedNumber)
