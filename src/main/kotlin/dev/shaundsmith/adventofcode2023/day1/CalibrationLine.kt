@@ -16,6 +16,7 @@ data class CalibrationLine(val line: String, val calibrationValues: Map<String, 
 
     private fun getFirstCalibrationValue(): String {
 
+        // No match returns -1, we need to exclude this
         val firstCalibration = calibrationValues.entries
             .minBy { entry -> if (line.contains(entry.key)) line.indexOf(entry.key) else 99 }
 
