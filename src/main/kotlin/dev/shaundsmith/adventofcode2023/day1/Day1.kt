@@ -6,7 +6,7 @@ class Day1 : PuzzleSolution  {
 
     private val numberMap = IntRange(0, 9).associate { it.toString() to it.toString() }
 
-    val wordMap = mapOf(
+    private val wordMap = mapOf(
         "one" to "1",
         "two" to "2",
         "three" to "3",
