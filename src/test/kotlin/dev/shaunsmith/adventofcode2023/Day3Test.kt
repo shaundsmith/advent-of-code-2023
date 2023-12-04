@@ -2,7 +2,6 @@ package dev.shaunsmith.adventofcode2023
 
 import dev.shaundsmith.adventofcode2023.core.FileLoader
 import dev.shaundsmith.adventofcode2023.day3.Day3
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -20,7 +19,6 @@ class Day3Test {
         assertEquals("4361", result)
     }
 
-    @Disabled
     @Test fun day3Part2() {
 
         val contents = fileLoader.loadFile("day3/test-input-2.txt")
