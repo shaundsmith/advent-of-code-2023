@@ -36,7 +36,7 @@ class Day5 : PuzzleSolution {
         val numbers = input.replace("seeds: ", "").split(" ")
 
         val seeds = ArrayList<LongRange>()
-        for (i in 0 until numbers.size/2) {
+        for (i in 0..<numbers.size/2) {
             val start = numbers[i * 2].toLong()
             val end = start + numbers[(i * 2) + 1].toLong() - 1
             seeds.add(LongRange(start, end))

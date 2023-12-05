@@ -1,0 +1,31 @@
+package dev.shaundsmith.adventofcode2023
+
+import dev.shaundsmith.adventofcode2023.core.FileLoader
+import dev.shaundsmith.adventofcode2023.day$day$.Day$day$
+import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+
+class Day$day$Test {
+
+    private val puzzleSolution = Day$day$()
+    private val fileLoader = FileLoader()
+
+    @Test fun day$day$Part1() {
+
+        val contents = fileLoader.loadFile("day$day$/test-input-1.txt")
+
+        val result = puzzleSolution.part1(contents)
+
+        assertEquals("", result)
+    }
+
+    @Test fun day$day$Part2() {
+
+        val contents = fileLoader.loadFile("day$day$/test-input-2.txt")
+
+        val result = puzzleSolution.part2(contents)
+
+        assertEquals("", result)
+    }
+
+}

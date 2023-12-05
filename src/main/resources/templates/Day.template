@@ -1,0 +1,17 @@
+package dev.shaundsmith.adventofcode2023.day$day$
+
+import dev.shaundsmith.adventofcode2023.core.PuzzleSolution
+
+class Day$day$ : PuzzleSolution {
+
+    override fun part1(input: List<String>): String {
+
+        return ""
+    }
+
+    override fun part2(input: List<String>): String {
+
+        return ""
+    }
+
+}

@@ -1,4 +1,4 @@
-package dev.shaunsmith.adventofcode2023
+package dev.shaundsmith.adventofcode2023
 
 import dev.shaundsmith.adventofcode2023.core.FileLoader
 import dev.shaundsmith.adventofcode2023.day3.Day3
