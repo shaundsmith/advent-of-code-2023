@@ -7,7 +7,7 @@ import kotlin.system.exitProcess
 fun main() {
 
     println("Please enter day to run:")
-    val day = readLine()!!
+    val day = readln()
     if (!day.matches(Regex("\\d+"))) {
         quitWithInvalidDay(day)
         return
