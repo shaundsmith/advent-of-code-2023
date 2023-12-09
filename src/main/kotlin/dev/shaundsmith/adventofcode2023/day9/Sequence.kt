@@ -2,7 +2,7 @@ package dev.shaundsmith.adventofcode2023.day9
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 
-class Sequence(private val values: List<Long>, val depth: Int = 0) {
+class Sequence(private val values: List<Long>, private val depth: Int = 0) {
 
     private val logger = KotlinLogging.logger {}
 
