@@ -30,7 +30,7 @@ private val expansionSize: Int) {
         logger.debug { "Empty space rows ($emptyRows)" }
     }
 
-    fun findShortestDistancesBetweenGalaxies(): List<Int> {
+    fun findShortestDistancesBetweenGalaxies(): List<Long> {
 
         val galaxies = findGalaxies()
 
@@ -43,12 +43,12 @@ private val expansionSize: Int) {
         return universe.findCoordinates { it == '#' }
     }
 
-    private fun findDistances(origin: Coordinate, otherGalaxies: List<Coordinate>): List<Int> {
+    private fun findDistances(origin: Coordinate, otherGalaxies: List<Coordinate>): List<Long> {
 
         logger.debug { "Finding distances from $origin for ${otherGalaxies.size} galaxies" }
-        val distances = ArrayList<Int>()
+        val distances = ArrayList<Long>()
         for (otherGalaxy in otherGalaxies) {
-            var distance = abs(origin.x - otherGalaxy.x) + abs(origin.y - otherGalaxy.y)
+            var distance = (abs(origin.x - otherGalaxy.x) + abs(origin.y - otherGalaxy.y)).toLong()
             distance += expand(origin.x, otherGalaxy.x, emptyColumns)
             distance += expand(origin.y, otherGalaxy.y, emptyRows)
             logger.debug { "Distance from $origin to $otherGalaxy is $distance" }
@@ -63,12 +63,12 @@ private val expansionSize: Int) {
         return elements.toSet().size == 1 && elements[0] == '.'
     }
 
-    private fun expand(start: Int, end: Int, empty: List<Int>): Int {
+    private fun expand(start: Int, end: Int, empty: List<Int>): Long {
 
         val numberOfExpansions = IntRange(min(start, end), max(start, end))
             .count { empty.contains(it) }
 
-        return numberOfExpansions * (expansionSize - 1)
+        return (numberOfExpansions * (expansionSize - 1)).toLong()
     }
 
 
