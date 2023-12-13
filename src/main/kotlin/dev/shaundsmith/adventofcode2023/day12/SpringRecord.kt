@@ -3,6 +3,7 @@ package dev.shaundsmith.adventofcode2023.day12
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlin.math.pow
 
+// V1 - Boolean Mask
 class SpringRecord(val rawLine: String, val counts: List<Int>) {
 
     val logger = KotlinLogging.logger {}
