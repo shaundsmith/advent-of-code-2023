@@ -1,6 +1,13 @@
 package dev.shaundsmith.adventofcode2023.core
 
-class Grid<T>(private val contents: Array<Array<T>>) {
+class Grid<T>(val contents: Array<Array<T>>) {
+
+    companion object {
+
+        inline fun <reified T> clone(original: Grid<T>): Grid<T> {
+            return Grid(original.contents.map { a -> a.copyOf() }.toTypedArray())
+        }
+    }
 
     fun get(position: Coordinate): T {
         return contents[position.x][position.y]
@@ -63,4 +70,16 @@ class Grid<T>(private val contents: Array<Array<T>>) {
         return !isNegative && !isLarger
     }
 
+    override fun toString(): String {
+
+        val sb = StringBuilder()
+        for (y in 0 until contents[0].size) {
+            for (element in contents) {
+                sb.append(element[y])
+            }
+            sb.append("\n")
+        }
+
+        return sb.toString()
+    }
 }
