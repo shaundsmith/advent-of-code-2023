@@ -3,20 +3,20 @@ package dev.shaundsmith.adventofcode2023.day16
 import dev.shaundsmith.adventofcode2023.core.Coordinate
 import dev.shaundsmith.adventofcode2023.core.Direction
 import dev.shaundsmith.adventofcode2023.core.Grid
-import dev.shaundsmith.adventofcode2023.core.Path
+import dev.shaundsmith.adventofcode2023.core.DirectionalPath
 import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.*
 
 class MirrorGrid(private val grid: Grid<MirrorType>, start: Pair<Coordinate, Direction>) {
     private val logger = KotlinLogging.logger {}
 
-    private val activePaths = LinkedList<Path>()
-    private val finishedPaths = ArrayList<Path>()
+    private val activePaths = LinkedList<DirectionalPath>()
+    private val finishedPaths = ArrayList<DirectionalPath>()
 
     val energized get() = calculateEnergized()
 
     init {
-        activePaths.add(Path(start.first, start.second))
+        activePaths.add(DirectionalPath(start.first, start.second))
     }
 
     fun mapBeams() {
@@ -31,7 +31,7 @@ class MirrorGrid(private val grid: Grid<MirrorType>, start: Pair<Coordinate, Dir
 
     private val verticalDirections = listOf(Direction.NORTH, Direction.SOUTH)
     private val horizontalDirections = listOf(Direction.EAST, Direction.WEST)
-    private fun mapBeam(path: Path) {
+    private fun mapBeam(path: DirectionalPath) {
 
         do {
             val currentPosition = path.getCurrentPosition()
@@ -71,11 +71,11 @@ class MirrorGrid(private val grid: Grid<MirrorType>, start: Pair<Coordinate, Dir
 
         if (grid.isValid(coordinate)) {
             logger.debug { "Splitting to $coordinate to the $direction" }
-            activePaths.add(Path(coordinate, direction))
+            activePaths.add(DirectionalPath(coordinate, direction))
         }
     }
 
-    private fun mapBeamToRightMirror(path: Path, currentPosition: Pair<Coordinate, Direction>) {
+    private fun mapBeamToRightMirror(path: DirectionalPath, currentPosition: Pair<Coordinate, Direction>) {
 
         val nextDirection = when (currentPosition.second) {
             Direction.NORTH -> Direction.WEST
@@ -89,7 +89,7 @@ class MirrorGrid(private val grid: Grid<MirrorType>, start: Pair<Coordinate, Dir
         path.moveTo(nextPosition, nextDirection)
     }
 
-    private fun mapBeamToLeftMirror(path: Path, currentPosition: Pair<Coordinate, Direction>) {
+    private fun mapBeamToLeftMirror(path: DirectionalPath, currentPosition: Pair<Coordinate, Direction>) {
 
         val nextDirection = when (currentPosition.second) {
             Direction.NORTH -> Direction.EAST
@@ -103,7 +103,7 @@ class MirrorGrid(private val grid: Grid<MirrorType>, start: Pair<Coordinate, Dir
         path.moveTo(nextPosition, nextDirection)
     }
 
-    private fun Path.hasTerminated(): Boolean {
+    private fun DirectionalPath.hasTerminated(): Boolean {
 
         val currentPosition = this.getCurrentPosition()
         val outsideGrid = !grid.isValid(currentPosition.first)

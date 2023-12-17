@@ -1,45 +1,60 @@
 package dev.shaundsmith.adventofcode2023.core
 
-class Path(start: Coordinate, direction: Direction) {
+class Path(start: Coordinate? = null, path: ArrayList<Coordinate>? = null) {
 
-    private val steps = ArrayList<Pair<Coordinate, Direction>>()
+    private val steps = ArrayList<Coordinate>()
     val size get(): Long = steps.size.toLong()
 
     init {
-        steps.add(Pair(start, direction))
+        if (start != null) {
+            steps.add(start)
+        } else if (path != null) {
+            steps.addAll(path)
+        }
     }
 
-    fun getInitialPosition(): Pair<Coordinate, Direction> {
+    fun getInitialPosition(): Coordinate {
 
         return steps.first()
     }
 
-    fun getCurrentPosition(): Pair<Coordinate, Direction> {
+    fun getCurrentPosition(): Coordinate {
 
         return steps.last()
     }
 
-    fun previousPositions(): List<Pair<Coordinate, Direction>> {
+    fun previousPositions(): List<Coordinate> {
 
         return steps.subList(0, steps.size - 1)
     }
 
-    fun moveTo(coordinate: Coordinate, direction: Direction) {
+    fun containsLoop(): Boolean {
+        return steps.size != steps.toSet().size
+    }
 
-        steps.add(Pair(coordinate, direction))
+    fun append(coordinate: Coordinate): Path {
+
+        val newPath = ArrayList<Coordinate>()
+        newPath.addAll(steps)
+        newPath.add(coordinate)
+        return Path(path = newPath)
     }
 
     fun contains(value: Coordinate): Boolean {
-        return steps.any { it.first == value }
-    }
-
-    fun contains(value: Coordinate, direction: Direction): Boolean {
-        return steps.any { it.first == value && it.second == direction }
+        return steps.any { it == value }
     }
 
     fun getAllPositions(): List<Coordinate> {
 
-        return steps.map { it.first }
+        return steps.map { it }
+    }
+
+    fun getLastNPositions(n: Int): List<Coordinate> {
+
+        if (size <= n) {
+            return steps.toList()
+        }
+        return steps.subList(size.toInt() - n, size.toInt())
     }
 
 }

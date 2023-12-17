@@ -3,7 +3,7 @@ package dev.shaundsmith.adventofcode2023.day10
 import dev.shaundsmith.adventofcode2023.core.Coordinate
 import dev.shaundsmith.adventofcode2023.core.Direction
 import dev.shaundsmith.adventofcode2023.core.Grid
-import dev.shaundsmith.adventofcode2023.core.Path
+import dev.shaundsmith.adventofcode2023.core.DirectionalPath
 import io.github.oshai.kotlinlogging.KotlinLogging
 
 class PipeNavigator(
@@ -12,7 +12,7 @@ class PipeNavigator(
 ) {
 
     private val logger = KotlinLogging.logger {}
-    val path: Path
+    val path: DirectionalPath
 
     init {
         path = findPathStart()
@@ -44,7 +44,7 @@ class PipeNavigator(
         return enclosed
     }
 
-    private fun move(path: Path) {
+    private fun move(path: DirectionalPath) {
 
         val position = path.getCurrentPosition()
         val tile = grid.get(position.first)
@@ -56,26 +56,26 @@ class PipeNavigator(
         path.moveTo(newPosition, newDirection)
     }
 
-    private fun findPathStart(): Path {
+    private fun findPathStart(): DirectionalPath {
 
         val north = start.transpose(0, -1)
         if (grid.isValid(north) && listOf(VerticalPipeTile::class, SevenTile::class, FTile::class).contains(grid.get(north)::class)) {
-            return Path(north, Direction.NORTH)
+            return DirectionalPath(north, Direction.NORTH)
         }
 
         val east = start.transpose(1, 0)
         if (grid.isValid(east) && listOf(HorizontalPipeTile::class, JTile::class, SevenTile::class).contains(grid.get(east)::class)) {
-            return Path(east, Direction.EAST)
+            return DirectionalPath(east, Direction.EAST)
         }
 
         val south = start.transpose(0, 1)
         if (grid.isValid(south) && listOf(VerticalPipeTile::class, JTile::class, LTile::class).contains(grid.get(south)::class)) {
-            return Path(south, Direction.SOUTH)
+            return DirectionalPath(south, Direction.SOUTH)
         }
 
         val west = start.transpose(-1, 0)
         if (grid.isValid(west) && listOf(HorizontalPipeTile::class, LTile::class, FTile::class).contains(grid.get(west)::class)) {
-            return Path(west, Direction.WEST)
+            return DirectionalPath(west, Direction.WEST)
         }
 
         throw IllegalStateException("No start position found")
