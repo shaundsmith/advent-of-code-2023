@@ -1,7 +1,9 @@
 package dev.shaundsmith.adventofcode2023.day10
 
 import dev.shaundsmith.adventofcode2023.core.Coordinate
+import dev.shaundsmith.adventofcode2023.core.Direction
 import dev.shaundsmith.adventofcode2023.core.Grid
+import dev.shaundsmith.adventofcode2023.core.Path
 import io.github.oshai.kotlinlogging.KotlinLogging
 
 class PipeNavigator(

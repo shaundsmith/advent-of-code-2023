@@ -1,5 +1,7 @@
 package dev.shaundsmith.adventofcode2023.day10
 
+import dev.shaundsmith.adventofcode2023.core.Direction
+
 interface Tile {
 
     fun changeDirection(currentDirection: Direction): Direction

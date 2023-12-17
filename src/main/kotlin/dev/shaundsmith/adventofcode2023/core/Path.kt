@@ -1,6 +1,4 @@
-package dev.shaundsmith.adventofcode2023.day10
-
-import dev.shaundsmith.adventofcode2023.core.Coordinate
+package dev.shaundsmith.adventofcode2023.core
 
 class Path(start: Coordinate, direction: Direction) {
 
@@ -21,6 +19,11 @@ class Path(start: Coordinate, direction: Direction) {
         return steps.last()
     }
 
+    fun previousPositions(): List<Pair<Coordinate, Direction>> {
+
+        return steps.subList(0, steps.size - 1)
+    }
+
     fun moveTo(coordinate: Coordinate, direction: Direction) {
 
         steps.add(Pair(coordinate, direction))
@@ -30,5 +33,13 @@ class Path(start: Coordinate, direction: Direction) {
         return steps.any { it.first == value }
     }
 
+    fun contains(value: Coordinate, direction: Direction): Boolean {
+        return steps.any { it.first == value && it.second == direction }
+    }
+
+    fun getAllPositions(): List<Coordinate> {
+
+        return steps.map { it.first }
+    }
 
 }

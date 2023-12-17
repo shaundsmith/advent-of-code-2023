@@ -1,4 +1,4 @@
-package dev.shaundsmith.adventofcode2023.day10
+package dev.shaundsmith.adventofcode2023.core
 
 enum class Direction(val xModifier: Int, val yModifier: Int) {
 
