@@ -7,6 +7,11 @@ class Grid<T>(val contents: Array<Array<T>>) {
         inline fun <reified T> clone(original: Grid<T>): Grid<T> {
             return Grid(original.contents.map { a -> a.copyOf() }.toTypedArray())
         }
+
+        inline fun <reified T> ofSize(width: Int, height: Int, default: T): Grid<T> {
+
+            return Grid(Array(width) { _ -> Array(height) { _ -> default } })
+        }
     }
 
     fun get(position: Coordinate): T {

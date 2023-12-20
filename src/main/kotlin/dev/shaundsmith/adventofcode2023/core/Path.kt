@@ -40,6 +40,13 @@ class Path(start: Coordinate? = null, path: ArrayList<Coordinate>? = null) {
         return Path(path = newPath)
     }
 
+    fun move(direction: Direction): Path {
+
+        val newCoordinate = getCurrentPosition()
+            .transpose(direction.xModifier, direction.yModifier)
+        return append(newCoordinate)
+    }
+
     fun contains(value: Coordinate): Boolean {
         return steps.any { it == value }
     }
