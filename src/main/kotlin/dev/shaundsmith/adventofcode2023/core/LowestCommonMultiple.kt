@@ -1,4 +1,4 @@
-package dev.shaundsmith.adventofcode2023.day8
+package dev.shaundsmith.adventofcode2023.core
 
 class LowestCommonMultiple {
 

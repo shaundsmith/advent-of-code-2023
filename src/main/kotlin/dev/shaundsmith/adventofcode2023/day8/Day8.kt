@@ -1,5 +1,6 @@
 package dev.shaundsmith.adventofcode2023.day8
 
+import dev.shaundsmith.adventofcode2023.core.LowestCommonMultiple
 import dev.shaundsmith.adventofcode2023.core.PuzzleSolution
 import io.github.oshai.kotlinlogging.KotlinLogging
 
