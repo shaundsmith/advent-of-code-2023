@@ -1,6 +1,6 @@
 package dev.shaundsmith.adventofcode2023.core
 
-class Path(start: Coordinate? = null, path: ArrayList<Coordinate>? = null) {
+class Path(start: Coordinate? = null, path: List<Coordinate>? = null) {
 
     private val steps = ArrayList<Coordinate>()
     val size get(): Long = steps.size.toLong()

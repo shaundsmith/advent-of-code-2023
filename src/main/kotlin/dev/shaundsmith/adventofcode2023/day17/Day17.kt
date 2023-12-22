@@ -10,8 +10,18 @@ class Day17 : PuzzleSolution {
 
     override fun part1(input: List<String>): String {
 
+        return getHeatLoss(false, input)
+    }
+
+    override fun part2(input: List<String>): String {
+
+        return getHeatLoss(true, input)
+    }
+
+    private fun getHeatLoss(ultraCrucibles: Boolean, input: List<String>): String {
         val grid = input.toGrid({ c -> c.digitToInt() }, 0)
-        val city = CityBlock(grid)
+        val city = CityBlock(grid, ultraCrucibles = ultraCrucibles)
+
         val bestPath = city.route()
 
         if (logger.isDebugEnabled()) {
@@ -24,11 +34,6 @@ class Day17 : PuzzleSolution {
             .sumOf { grid.get(it) }
 
         return heatLoss.toString()
-    }
-
-    override fun part2(input: List<String>): String {
-
-        return ""
     }
 
 }
