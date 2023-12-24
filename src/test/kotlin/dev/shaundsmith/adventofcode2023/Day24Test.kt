@@ -25,7 +25,7 @@ class Day24Test {
 
         val result = puzzleSolution.part2(contents)
 
-        assertEquals("", result)
+        assertEquals("47", result)
     }
 
 }

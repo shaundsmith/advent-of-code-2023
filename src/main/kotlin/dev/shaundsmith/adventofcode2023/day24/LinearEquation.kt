@@ -2,6 +2,8 @@ package dev.shaundsmith.adventofcode2023.day24
 
 import dev.shaundsmith.adventofcode2023.core.DoubleCoordinate
 import io.github.oshai.kotlinlogging.KotlinLogging
+import java.lang.Math.abs
+import kotlin.math.round
 
 class LinearEquation(private val slope: Double,
                      private val constant: Double,
@@ -13,7 +15,7 @@ class LinearEquation(private val slope: Double,
 
         fun fromCoordinateAndVelocity(coordinate: DoubleCoordinate, velocityX: Double, velocityY: Double): LinearEquation {
 
-            val slope = velocityY / velocityX
+            val slope = if (velocityX == 0.0) 0.0 else velocityY / velocityX
 
             val constant = coordinate.y - (slope * coordinate.x)
 
@@ -36,6 +38,10 @@ class LinearEquation(private val slope: Double,
         )
     }
 
+    fun contains(coordinate: DoubleCoordinate): Boolean {
+
+        return abs(coordinate.y - ((coordinate.x * slope) + constant)) < 1
+    }
 
     override fun toString(): String {
         return "y = ${slope}x + $constant"
